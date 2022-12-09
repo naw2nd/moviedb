@@ -14,8 +14,6 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  String _selectedSearch = 'Movies';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,42 +39,9 @@ class _SearchPageState extends State<SearchPage> {
               textInputAction: TextInputAction.search,
             ),
             const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  '$_selectedSearch Result',
-                  style: kHeading6.copyWith(color: kMikadoYellow),
-                ),
-                Row(
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _selectedSearch = 'Movies';
-                          });
-                        },
-                        icon: Icon(
-                          Icons.movie,
-                          color: _selectedSearch == 'Movies'
-                              ? kMikadoYellow
-                              : Colors.white,
-                        )),
-                    IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _selectedSearch = 'Tv Shows';
-                          });
-                        },
-                        icon: Icon(
-                          Icons.tv,
-                          color: _selectedSearch == 'Tv Shows'
-                              ? kMikadoYellow
-                              : Colors.white,
-                        )),
-                  ],
-                ),
-              ],
+            Text(
+              'Movies Result',
+              style: cHeading6.copyWith(color: cMikadoYellow),
             ),
             const MovieSearchResult(),
           ],

@@ -9,10 +9,10 @@ import 'package:http/http.dart' as http;
 
 abstract class MovieRemoteDataSource {
   Future<List<MovieModel>> getNowPlayingMovies();
+  Future<List<MovieModel>> getUpcomingMovies();
   Future<List<MovieModel>> getPopularMovies();
   Future<List<MovieModel>> getTopRatedMovies();
   Future<MovieDetailResponse> getMovieDetail(int id);
-  Future<List<MovieModel>> getMovieRecommendations(int id);
   Future<List<MovieModel>> searchMovies(String query);
 }
 
@@ -32,6 +32,17 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
       throw ServerException();
     }
   }
+  @override
+  Future<List<MovieModel>> getUpcomingMovies() async {
+    final response =
+        await client.get(Uri.parse('$baseUrl/movie/upcoming?$apiKey'));
+
+    if (response.statusCode == 200) {
+      return MovieResponse.fromJson(json.decode(response.body)).movieList;
+    } else {
+      throw ServerException();
+    }
+  }
 
   @override
   Future<MovieDetailResponse> getMovieDetail(int id) async {
@@ -40,18 +51,6 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
 
     if (response.statusCode == 200) {
       return MovieDetailResponse.fromJson(json.decode(response.body));
-    } else {
-      throw ServerException();
-    }
-  }
-
-  @override
-  Future<List<MovieModel>> getMovieRecommendations(int id) async {
-    final response = await client
-        .get(Uri.parse('$baseUrl/movie/$id/recommendations?$apiKey'));
-
-    if (response.statusCode == 200) {
-      return MovieResponse.fromJson(json.decode(response.body)).movieList;
     } else {
       throw ServerException();
     }
@@ -92,4 +91,5 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
       throw ServerException();
     }
   }
+  
 }

@@ -22,11 +22,7 @@ class PopularMoviesPageState extends State<PopularMoviesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Popular Movies'),
-      ),
-      body: Padding(
+    return Padding(
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<PopularMoviesBloc, PopularMoviesState>(
           builder: (context, state) {
@@ -50,7 +46,6 @@ class PopularMoviesPageState extends State<PopularMoviesPage> {
             }
           },
         ),
-      ),
-    );
+      );
   }
 }

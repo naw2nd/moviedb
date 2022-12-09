@@ -33,7 +33,7 @@ void main() {
     return BlocProvider<PopularMoviesBloc>.value(
       value: mockPopularMoviesBloc,
       child: MaterialApp(
-        home: body,
+        home: Scaffold(body: body),
       ),
     );
   }

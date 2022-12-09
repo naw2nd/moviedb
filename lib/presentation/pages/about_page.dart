@@ -14,22 +14,19 @@ class AboutPage extends StatelessWidget {
           Column(
             children: [
               Expanded(
-                child: Container(
-                  color: kPrussianBlue,
-                  child: Center(
-                    child: Image.asset(
-                      'assets/circle-g.png',
-                      width: 128,
-                    ),
+                child: Center(
+                  child: Image.asset(
+                    'assets/images/logo_tmdb.png',
+                    width: 128,
                   ),
                 ),
               ),
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.all(32.0),
-                  color: kMikadoYellow,
+                  color: cMikadoYellow,
                   child: const Text(
-                    'Ditonton merupakan sebuah aplikasi katalog film yang dikembangkan oleh Dicoding Indonesia sebagai contoh proyek aplikasi untuk kelas Menjadi Flutter Developer Expert.',
+                    "The Movie Database (TMDB) is a community built movie and TV database. Every piece of data has been added by our amazing community dating back to 2008. TMDB's strong international focus and breadth of data is largely unmatched and something we're incredibly proud of. Put simply, we live and breathe community and that's precisely what makes us different.",
                     style: TextStyle(color: Colors.black87, fontSize: 16),
                     textAlign: TextAlign.justify,
                   ),

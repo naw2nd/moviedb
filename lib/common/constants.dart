@@ -7,40 +7,39 @@ const apiKey = 'api_key=d1466fe417c13715d3f99df32706ca6d';
 const baseUrl = 'https://api.themoviedb.org/3';
 
 // colors
-const Color kRichBlack = Color(0xFF000814);
-const Color kOxfordBlue = Color(0xFF001D3D);
-const Color kPrussianBlue = Color(0xFF003566);
-const Color kMikadoYellow = Color(0xFFffc300);
-const Color kDavysGrey = Color(0xFF4B5358);
-const Color kGrey = Color(0xFF303030);
+const Color cRichBlack = Color(0xFF1D1D1D);
+const Color cRichGrey = Color(0xFF707070);
+const Color cMikadoYellow = Color(0xFFFFA600);
+const Color cDavysGrey = Color(0xFF4B5358);
+const Color cGrey = Color(0xFF303030);
 
 // text style
-final TextStyle kHeading5 =
+final TextStyle cHeading5 =
     GoogleFonts.poppins(fontSize: 23, fontWeight: FontWeight.w400);
-final TextStyle kHeading6 = GoogleFonts.poppins(
+final TextStyle cHeading6 = GoogleFonts.poppins(
     fontSize: 19, fontWeight: FontWeight.w500, letterSpacing: 0.15);
-final TextStyle kSubtitle = GoogleFonts.poppins(
+final TextStyle cSubtitle = GoogleFonts.poppins(
     fontSize: 15, fontWeight: FontWeight.w400, letterSpacing: 0.15);
-final TextStyle kBodyText = GoogleFonts.poppins(
+final TextStyle cBodyText = GoogleFonts.poppins(
     fontSize: 13, fontWeight: FontWeight.w400, letterSpacing: 0.25);
 
 // text theme
-final kTextTheme = TextTheme(
-  headline5: kHeading5,
-  headline6: kHeading6,
-  subtitle1: kSubtitle,
-  bodyText2: kBodyText,
+final cTextTheme = TextTheme(
+  headline5: cHeading5,
+  headline6: cHeading6,
+  subtitle1: cSubtitle,
+  bodyText2: cBodyText,
 );
 
-const kColorScheme = ColorScheme(
-  primary: kMikadoYellow,
-  primaryContainer: kMikadoYellow,
-  secondary: kPrussianBlue,
-  secondaryContainer: kPrussianBlue,
-  surface: kRichBlack,
-  background: kRichBlack,
+const cColorScheme = ColorScheme(
+  primary: cMikadoYellow,
+  primaryContainer: cMikadoYellow,
+  secondary: cRichGrey,
+  secondaryContainer: cRichGrey,
+  surface: cRichBlack,
+  background: cRichBlack,
   error: Colors.red,
-  onPrimary: kRichBlack,
+  onPrimary: cRichBlack,
   onSecondary: Colors.white,
   onSurface: Colors.white,
   onBackground: Colors.white,

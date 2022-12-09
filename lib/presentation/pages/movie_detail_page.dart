@@ -3,7 +3,6 @@ import 'package:moviedb/common/constants.dart';
 import 'package:moviedb/domain/entities/genre.dart';
 import 'package:moviedb/domain/entities/movie_detail.dart';
 import 'package:moviedb/presentation/bloc/movie_detail/movie_detail_bloc.dart';
-import 'package:moviedb/presentation/bloc/movie_recommendations/movie_recommendations_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -62,11 +61,7 @@ class _DetailContentState extends State<DetailContent> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      context
-          .read<MovieRecommendationsBloc>()
-          .add(OnFetchMovieRecommendatios(widget.movie.id));
-    });
+    Future.microtask(() {});
   }
 
   @override
@@ -88,7 +83,7 @@ class _DetailContentState extends State<DetailContent> {
             builder: (context, scrollController) {
               return Container(
                 decoration: const BoxDecoration(
-                  color: kRichBlack,
+                  color: cRichBlack,
                   borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
                 ),
                 padding: const EdgeInsets.only(
@@ -107,7 +102,7 @@ class _DetailContentState extends State<DetailContent> {
                           children: [
                             Text(
                               widget.movie.title,
-                              style: kHeading5,
+                              style: cHeading5,
                             ),
                             Text(
                               _showGenres(widget.movie.genres),
@@ -122,7 +117,7 @@ class _DetailContentState extends State<DetailContent> {
                                   itemCount: 5,
                                   itemBuilder: (context, index) => const Icon(
                                     Icons.star,
-                                    color: kMikadoYellow,
+                                    color: cMikadoYellow,
                                   ),
                                   itemSize: 24,
                                 ),
@@ -132,7 +127,7 @@ class _DetailContentState extends State<DetailContent> {
                             const SizedBox(height: 16),
                             Text(
                               'Overview',
-                              style: kHeading6,
+                              style: cHeading6,
                             ),
                             Text(
                               widget.movie.overview,
@@ -140,63 +135,7 @@ class _DetailContentState extends State<DetailContent> {
                             const SizedBox(height: 16),
                             Text(
                               'Recommendations',
-                              style: kHeading6,
-                            ),
-                            BlocBuilder<MovieRecommendationsBloc,
-                                MovieRecommendationsState>(
-                              builder: (context, state) {
-                                if (state is MovieRecommendationsLoading) {
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                } else if (state is MovieRecommendationsError) {
-                                  return Text(state.message);
-                                } else if (state
-                                    is MovieRecommendationsHasData) {
-                                  return SizedBox(
-                                    height: 150,
-                                    child: ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder: (context, index) {
-                                        final movie = state.result[index];
-                                        return Padding(
-                                          padding: const EdgeInsets.all(4.0),
-                                          child: InkWell(
-                                            onTap: () {
-                                              Navigator.pushReplacementNamed(
-                                                context,
-                                                MovieDetailPage.routeName,
-                                                arguments: movie.id,
-                                              );
-                                            },
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                Radius.circular(8),
-                                              ),
-                                              child: CachedNetworkImage(
-                                                imageUrl:
-                                                    'https://image.tmdb.org/t/p/w500${movie.posterPath}',
-                                                placeholder: (context, url) =>
-                                                    const Center(
-                                                  child:
-                                                      CircularProgressIndicator(),
-                                                ),
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        const Icon(Icons.error),
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      itemCount: state.result.length,
-                                    ),
-                                  );
-                                } else {
-                                  return Container();
-                                }
-                              },
+                              style: cHeading6,
                             ),
                           ],
                         ),
@@ -222,7 +161,7 @@ class _DetailContentState extends State<DetailContent> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: CircleAvatar(
-            backgroundColor: kRichBlack,
+            backgroundColor: cRichBlack,
             foregroundColor: Colors.white,
             child: IconButton(
               icon: const Icon(Icons.arrow_back),

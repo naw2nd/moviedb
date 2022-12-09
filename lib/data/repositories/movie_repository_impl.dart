@@ -28,12 +28,11 @@ class MovieRepositoryImpl implements MovieRepository {
       return const Left(ConnectionFailure('Failed to connect to the network'));
     }
   }
-
   @override
-  Future<Either<Failure, MovieDetail>> getMovieDetail(int id) async {
+  Future<Either<Failure, List<Movie>>> getUpcomingMovies() async {
     try {
-      final result = await remoteDataSource.getMovieDetail(id);
-      return Right(result.toEntity());
+      final result = await remoteDataSource.getUpcomingMovies();
+      return Right(result.map((model) => model.toEntity()).toList());
     } on ServerException {
       return const Left(ServerFailure(''));
     } on TlsException catch (e) {
@@ -44,10 +43,10 @@ class MovieRepositoryImpl implements MovieRepository {
   }
 
   @override
-  Future<Either<Failure, List<Movie>>> getMovieRecommendations(int id) async {
+  Future<Either<Failure, MovieDetail>> getMovieDetail(int id) async {
     try {
-      final result = await remoteDataSource.getMovieRecommendations(id);
-      return Right(result.map((model) => model.toEntity()).toList());
+      final result = await remoteDataSource.getMovieDetail(id);
+      return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure(''));
     } on TlsException catch (e) {
