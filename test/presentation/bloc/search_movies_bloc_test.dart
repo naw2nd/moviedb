@@ -53,7 +53,7 @@ void main() {
       return searchMoviesBloc;
     },
     act: (bloc) => bloc.add(OnQuerySearchMovies(tQuery)),
-    wait: const Duration(milliseconds: 100),
+    wait: const Duration(milliseconds: 500),
     expect: () => [
       SearchMoviesLoading(),
       SearchMoviesHasData(tMovieList),
@@ -71,6 +71,7 @@ void main() {
       return searchMoviesBloc;
     },
     act: (bloc) => bloc.add(OnQuerySearchMovies(tQuery)),
+    wait: const Duration(milliseconds: 500),
     expect: () => [
       SearchMoviesLoading(),
       const SearchMoviesError('Server Failure'),

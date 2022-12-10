@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:money_formatter/money_formatter.dart';
 import 'package:moviedb/common/constants.dart';
 import 'package:moviedb/domain/entities/genre.dart';
 import 'package:moviedb/domain/entities/movie_detail.dart';
@@ -7,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:moviedb/presentation/widgets/video_player.dart';
+// ignore: depend_on_referenced_packages
+import 'package:intl/intl.dart';
 
 class MovieDetailPage extends StatefulWidget {
   static const routeName = '/detail';
@@ -59,11 +62,6 @@ class DetailContent extends StatefulWidget {
 }
 
 class _DetailContentState extends State<DetailContent> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -124,6 +122,36 @@ class _DetailContentState extends State<DetailContent> {
                                 Text('${widget.movie.voteAverage}')
                               ],
                             ),
+                            const SizedBox(height: 5),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text('Released :'),
+                                Text(
+                                  DateFormat.yMMMMd('en_US')
+                                      .format(widget.movie.releaseDate),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text('Budget :'),
+                                Text(
+                                  MoneyFormatter(
+                                          amount:
+                                              widget.movie.budget.toDouble())
+                                      .output
+                                      .symbolOnLeft,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 16),
+                            Text(
+                              'Trailer',
+                              style: cHeading6,
+                            ),
+                            VideoPlayer(id: widget.movie.id),
                             const SizedBox(height: 16),
                             Text(
                               'Overview',
@@ -132,12 +160,6 @@ class _DetailContentState extends State<DetailContent> {
                             Text(
                               widget.movie.overview,
                             ),
-                            const SizedBox(height: 16),
-                            Text(
-                              'Trailer',
-                              style: cHeading6,
-                            ),
-                            VideoPlayer(id: widget.movie.id)
                           ],
                         ),
                       ),

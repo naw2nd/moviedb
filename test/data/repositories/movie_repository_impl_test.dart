@@ -230,7 +230,7 @@ void main() {
     const tMovieResponse = MovieDetailResponse(
       adult: false,
       backdropPath: 'backdropPath',
-      budget: 100,
+      budget: 1,
       genres: [GenreModel(id: 1, name: 'Action')],
       homepage: "https://google.com",
       id: 1,
@@ -240,7 +240,7 @@ void main() {
       overview: 'overview',
       popularity: 1,
       posterPath: 'posterPath',
-      releaseDate: 'releaseDate',
+      releaseDate: '2022-10-19',
       revenue: 12000,
       runtime: 120,
       status: 'Status',
@@ -261,7 +261,7 @@ void main() {
       final result = await repository.getMovieDetail(tId);
       // assert
       verify(mockRemoteDataSource.getMovieDetail(tId));
-      expect(result, equals(const Right(testMovieDetail)));
+      expect(result, equals( Right(testMovieDetail)));
     });
 
     test(

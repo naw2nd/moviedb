@@ -15,6 +15,13 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   @override
+  void initState() {
+    super.initState();
+    Future.microtask(
+        () => context.read<SearchMoviesBloc>().add(OnInitSearchMovies()));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -26,7 +33,7 @@ class _SearchPageState extends State<SearchPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
-              onSubmitted: (query) {
+              onChanged: (query) {
                 context
                     .read<SearchMoviesBloc>()
                     .add(OnQuerySearchMovies(query));

@@ -32,14 +32,14 @@ void main() {
     'Should emit [Loading, HasData] when data is gotten successfully',
     build: () {
       when(mockGetMovieDetail.execute(tId))
-          .thenAnswer((_) async => const Right(testMovieDetail));
+          .thenAnswer((_) async =>  Right(testMovieDetail));
       return movieDetailBloc;
     },
     act: (bloc) => bloc.add(OnFetchMovieDetail(tId)),
     wait: const Duration(milliseconds: 100),
     expect: () => [
       MovieDetailLoading(),
-      const MovieDetailHasData(testMovieDetail),
+       MovieDetailHasData(testMovieDetail),
     ],
     verify: (bloc) {
       verify(mockGetMovieDetail.execute(tId));

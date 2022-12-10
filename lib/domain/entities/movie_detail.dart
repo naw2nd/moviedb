@@ -15,6 +15,7 @@ class MovieDetail extends Equatable {
     required this.title,
     required this.voteAverage,
     required this.voteCount,
+    required this.budget,
   });
 
   final bool adult;
@@ -24,11 +25,12 @@ class MovieDetail extends Equatable {
   final String originalTitle;
   final String overview;
   final String posterPath;
-  final String releaseDate;
+  final DateTime releaseDate;
   final int runtime;
   final String title;
   final double voteAverage;
   final int voteCount;
+  final int budget;
 
   @override
   List<Object?> get props => [
@@ -43,5 +45,6 @@ class MovieDetail extends Equatable {
         title,
         voteAverage,
         voteCount,
+        budget,
       ];
 }

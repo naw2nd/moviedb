@@ -84,11 +84,12 @@ class MovieDetailResponse extends Equatable {
       originalTitle: originalTitle,
       overview: overview,
       posterPath: posterPath,
-      releaseDate: releaseDate,
+      releaseDate: DateTime.parse(releaseDate),
       runtime: runtime,
       title: title,
       voteAverage: voteAverage,
       voteCount: voteCount,
+      budget: budget,
     );
   }
 

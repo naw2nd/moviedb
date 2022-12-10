@@ -4,6 +4,8 @@ abstract class SearchMoviesEvent {
   const SearchMoviesEvent();
 }
 
+class OnInitSearchMovies extends SearchMoviesEvent {}
+
 class OnQuerySearchMovies extends SearchMoviesEvent {
   final String query;
 

@@ -21,15 +21,16 @@ const testMovie = Movie(
 
 final testMovieList = [testMovie];
 
-const testMovieDetail = MovieDetail(
+final testMovieDetail = MovieDetail(
   adult: false,
   backdropPath: 'backdropPath',
-  genres: [Genre(id: 1, name: 'Action')],
+  genres: const [Genre(id: 1, name: 'Action')],
   id: 1,
+  budget: 1,
   originalTitle: 'originalTitle',
   overview: 'overview',
   posterPath: 'posterPath',
-  releaseDate: 'releaseDate',
+  releaseDate: DateTime.parse('2022-10-19'),
   runtime: 120,
   title: 'title',
   voteAverage: 1,
