@@ -1,6 +1,7 @@
 import 'package:moviedb/common/constants.dart';
 import 'package:moviedb/common/utils.dart';
 import 'package:moviedb/presentation/bloc/movie_detail/movie_detail_bloc.dart';
+import 'package:moviedb/presentation/bloc/movie_videos/movie_videos_bloc.dart';
 import 'package:moviedb/presentation/bloc/now_playing_movies/now_playing_movies_bloc.dart';
 import 'package:moviedb/presentation/bloc/popular_movies/popular_movies_bloc.dart';
 import 'package:moviedb/presentation/bloc/search_movies/search_movies_bloc.dart';
@@ -32,6 +33,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (_) => di.locator<MovieDetailBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<MovieVideosBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<SearchMoviesBloc>(),

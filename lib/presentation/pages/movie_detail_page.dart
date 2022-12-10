@@ -6,6 +6,7 @@ import 'package:moviedb/presentation/bloc/movie_detail/movie_detail_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:moviedb/presentation/widgets/video_player.dart';
 
 class MovieDetailPage extends StatefulWidget {
   static const routeName = '/detail';
@@ -61,7 +62,6 @@ class _DetailContentState extends State<DetailContent> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {});
   }
 
   @override
@@ -134,9 +134,10 @@ class _DetailContentState extends State<DetailContent> {
                             ),
                             const SizedBox(height: 16),
                             Text(
-                              'Recommendations',
+                              'Trailer',
                               style: cHeading6,
                             ),
+                            VideoPlayer(id: widget.movie.id)
                           ],
                         ),
                       ),

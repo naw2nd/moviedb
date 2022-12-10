@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:moviedb/data/datasources/movie_remote_data_source.dart';
 import 'package:moviedb/domain/entities/movie.dart';
 import 'package:moviedb/domain/entities/movie_detail.dart';
+import 'package:moviedb/domain/entities/video.dart';
 import 'package:moviedb/domain/repositories/movie_repository.dart';
 import 'package:moviedb/common/exception.dart';
 import 'package:moviedb/common/failure.dart';
@@ -46,6 +47,19 @@ class MovieRepositoryImpl implements MovieRepository {
   Future<Either<Failure, MovieDetail>> getMovieDetail(int id) async {
     try {
       final result = await remoteDataSource.getMovieDetail(id);
+      return Right(result.toEntity());
+    } on ServerException {
+      return const Left(ServerFailure(''));
+    } on TlsException catch (e) {
+      return Left(CommonFailure('Certificated not valid\n${e.message}'));
+    } on SocketException {
+      return const Left(ConnectionFailure('Failed to connect to the network'));
+    }
+  }
+  @override
+  Future<Either<Failure, List<Video>>> getMovieVideos(int id) async {
+    try {
+      final result = await remoteDataSource.getMovieVideos(id);
       return Right(result.toEntity());
     } on ServerException {
       return const Left(ServerFailure(''));

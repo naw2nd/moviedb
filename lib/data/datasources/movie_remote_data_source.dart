@@ -6,6 +6,7 @@ import 'package:moviedb/data/models/movie_model.dart';
 import 'package:moviedb/data/models/movie_response.dart';
 import 'package:moviedb/common/exception.dart';
 import 'package:http/http.dart' as http;
+import 'package:moviedb/data/models/videos_model.dart';
 
 abstract class MovieRemoteDataSource {
   Future<List<MovieModel>> getNowPlayingMovies();
@@ -13,6 +14,7 @@ abstract class MovieRemoteDataSource {
   Future<List<MovieModel>> getPopularMovies();
   Future<List<MovieModel>> getTopRatedMovies();
   Future<MovieDetailResponse> getMovieDetail(int id);
+  Future<VideosResponse> getMovieVideos(int id);
   Future<List<MovieModel>> searchMovies(String query);
 }
 
@@ -51,6 +53,17 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
 
     if (response.statusCode == 200) {
       return MovieDetailResponse.fromJson(json.decode(response.body));
+    } else {
+      throw ServerException();
+    }
+  }
+  @override
+  Future<VideosResponse> getMovieVideos(int id) async {
+    final response =
+        await client.get(Uri.parse('$baseUrl/movie/$id/videos?$apiKey'));
+
+    if (response.statusCode == 200) {
+      return VideosResponse.fromJson(json.decode(response.body));
     } else {
       throw ServerException();
     }
